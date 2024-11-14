@@ -30,6 +30,10 @@ export class DataQueue<T> {
     }
   }
 
+  public getQueue(): Array<{ op?: () => void; data: T }> {
+    return this.queue
+  }
+
   public async dequeue(): Promise<T> {
     if (this.queue.length > 0) {
       const { data = null, op = null } = this.queue.shift() || {};
