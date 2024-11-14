@@ -179,7 +179,7 @@ export class RethinkDBSocket extends EventEmitter {
     if (type === QueryType.STOP) {
       // console.log('STOP ' + token);
       this.socket.write(buffer);
-      if (data?.getQueue.length || 0 > 0) {
+      if (data && data?.getQueue().length > 0) {
         // Resolving and not rejecting so there won't be "unhandled rejection" if nobody listens
         data.destroy(
           new RethinkDBError('Query cancelled', {
